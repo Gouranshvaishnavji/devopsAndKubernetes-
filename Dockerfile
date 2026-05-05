@@ -3,7 +3,7 @@
 # This stage installs dependencies. By separating this into its own stage,
 # we can leverage Docker layer caching to avoid reinstalling packages
 # when only application code changes.
-FROM python:3.11-slim as builder
+FROM python:3.11-slim AS builder
 
 # Set working directory inside the container
 WORKDIR /app
