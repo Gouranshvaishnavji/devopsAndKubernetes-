@@ -22,10 +22,10 @@ if (-not (Get-Command kubectl -ErrorAction SilentlyContinue)) {
 # Create registry if missing
 $reg = docker ps -a --format "{{.Names}}" | Where-Object { $_ -eq $registryName }
 if (-not $reg) {
-  Write-Output "Starting local registry $registryName:$registryPort"
+  Write-Output ("Starting local registry {0}:{1}" -f $registryName, $registryPort)
   docker run -d --restart=always -p "$registryPort`:5000" --name $registryName registry:2 | Out-Null
 } else {
-  Write-Output "Local registry $registryName already exists"
+  Write-Output ("Local registry {0} already exists" -f $registryName)
 }
 
 Write-Output "Creating kind cluster $ClusterName with config $KindConfig"
