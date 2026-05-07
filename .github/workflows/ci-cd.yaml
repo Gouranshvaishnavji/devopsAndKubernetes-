@@ -41,7 +41,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/pdf-extractor-backend:latest
             ghcr.io/${{ github.repository_owner }}/pdf-extractor-backend:${{ github.sha }}
@@ -51,7 +51,7 @@ jobs:
         with:
           context: ./frontend
           file: ./frontend/Dockerfile
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/pdf-extractor-frontend:latest
             ghcr.io/${{ github.repository_owner }}/pdf-extractor-frontend:${{ github.sha }}
